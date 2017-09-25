@@ -1,4 +1,4 @@
 # Proyecto de Infraestructura Virtual
 
 ## Descripción
-Para el proyecto de la asignatura he decidido realizar una aplicación web que permita la administración de usuarios en una red social para dispositivos móviles. Esta aplicación permitirá a los administradores realizar acciones sobre los usuarios de dicha red social, como por ejemplo registrar usuarios, modificar usuarios, banear usuarios, etc. Se usará principalmente el lenguaje Python, debido a su flexibilidad y la importancia que posee hoy en día.
+Para el proyecto de la asignatura he decidido realizar un bot de *Telegram* que permita consultar la agenda de un determinado día. Además, también incorporará la funcionalidad de permitir modificar la misma, añadiendo o eliminando tareas que ya se hayan completado. El proyecto está pensado de forma personal para administrar una agenda orientada a llevar un seguimiento de clases particulares, donde el profesor podría consultar la hora, el sitio, si la clase es online o presencial, el nombre del alumno, la materia, etc.
