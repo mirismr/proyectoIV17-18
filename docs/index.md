@@ -8,3 +8,4 @@ Para el proyecto de la asignatura he decidido realizar un bot de *Telegram* que 
 - Lenguaje de alto nivel: *Python*.
 - Despliegue en la nube con *Azure*.
 - Base de datos: *MySQL*, donde se almacenarán todos los datos requeridos para gestionar las clases.
+- Test de integración contínua: *TravisCI*.
