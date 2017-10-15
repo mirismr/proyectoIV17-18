@@ -7,4 +7,4 @@ El despliegue en la nube se hará con *Azure*. Además para los test de integrac
 ## Servicios requeridos
 - API de *Telegram*.
 - Lenguaje de alto nivel: *Python*.
-- Base de datos: *MySQL*, donde se almacenarán todos los datos requeridos para gestionar las clases.
+- Base de datos: *sqlite3*, donde se almacenarán todos los datos requeridos para gestionar las clases.
