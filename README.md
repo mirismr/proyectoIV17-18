@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mirismr/proyectoIV17-18.svg?branch=master)](https://travis-ci.org/mirismr/proyectoIV17-18)
+
 Este es el repositorio de mi proyecto personal para la asignatura Infrestructura Virtual. En este [enlace](https://mirismr.github.io/proyectoIV17-18/) se encuentra información extra del proyecto (documentación interesante, etc).
 
 ## Descripción
