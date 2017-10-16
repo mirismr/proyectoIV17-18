@@ -11,5 +11,8 @@ El despliegue en la nube se hará con *Azure*. Además para los test de integrac
 - Lenguaje de alto nivel: *Python*.
 - Base de datos: *sqlite3*, donde se almacenarán todos los datos requeridos para gestionar las clases.
 
+## Tests
+Para la realización de los tests en *Python* he usado la librería *Unitest* dado su simplicidad y que no requiere ninguna instalación extra.
+
 ## Integración contínua
 Podemos ver la configuración de *TravisCI* en el [siguiente enlace](https://mirismr.github.io/proyectoIV17-18/)
