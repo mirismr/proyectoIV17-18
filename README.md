@@ -8,3 +8,6 @@ El despliegue en la nube se hará con *Azure*. Además para los test de integrac
 - API de *Telegram*.
 - Lenguaje de alto nivel: *Python*.
 - Base de datos: *sqlite3*, donde se almacenarán todos los datos requeridos para gestionar las clases.
+
+## Integración contínua
+Podemos ver la configuración de *TravisCI* en el [siguiente enlace](https://mirismr.github.io/proyectoIV17-18/)

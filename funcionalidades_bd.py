@@ -1,6 +1,9 @@
 import sqlite3
 
 def insertar_alumno(alumno):
+	"""
+	Funcion para insertar un alumno en la base de datos.
+	"""
 	conexion = sqlite3.connect('base_datos.db')
 	cursor = conexion.cursor()
 	#claves externas
@@ -12,6 +15,9 @@ def insertar_alumno(alumno):
 		print('Error de integridad en la base de datos')
 
 def obtener_alumno(email_alumno):
+	"""
+	Funcion para obtener un alumno de la base de datos a partir de su email.
+	"""
 	conexion = sqlite3.connect('base_datos.db')
 	cursor = conexion.cursor()
 	resultado=''
@@ -24,6 +30,9 @@ def obtener_alumno(email_alumno):
 	return str(resultado)
 
 def insertar_clase(clase):
+	"""
+	Funcion para insertar una clase en la base de datos.
+	"""
 	conexion = sqlite3.connect('base_datos.db')
 	cursor = conexion.cursor()
 	#claves externas
@@ -34,7 +43,11 @@ def insertar_clase(clase):
 	except sqlite3.IntegrityError as e:
 		print('Error de integridad en la base de datos')
 
+
 def obtener_clase(identificador):
+	"""
+	Funcion para obtener una clase de la base de datos dando un identificador.
+	"""
 	conexion = sqlite3.connect('base_datos.db')
 	cursor = conexion.cursor()
 	resultado=''
@@ -47,6 +60,9 @@ def obtener_clase(identificador):
 	return str(resultado)
 
 def programar_clase(detalles):
+	"""
+	Funcion para registrar una futura clase en la base de datos.
+	"""
 	conexion = sqlite3.connect('base_datos.db')
 	cursor = conexion.cursor()
 	#claves externas
@@ -59,6 +75,9 @@ def programar_clase(detalles):
 		print('Error de integridad en la base de datos')
 
 def obtener_clase_programada(fecha):
+	"""
+	Funcion para, dada una fecha, obtener las clases para dicha fecha.
+	"""
 	conexion = sqlite3.connect('base_datos.db')
 	cursor = conexion.cursor()
 	resultado=''
