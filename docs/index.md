@@ -23,7 +23,7 @@ Por lo cual, nuestro archivo `.travis.yml` es:
 ~~~
 language: python
 python:
-    - "3.0"
+  - "3.0"
 
 install: make install
 
