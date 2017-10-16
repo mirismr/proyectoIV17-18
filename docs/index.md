@@ -13,7 +13,7 @@ Para la realización de los tests simplemente debemos ejecutar el comando `pytho
 Así pues, para automatizar esta tarea, nos vamos a servir de un fichero *Makefile*:
 ~~~
 install:
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
 
 tests:
     python3 tests.py
