@@ -71,7 +71,7 @@ def obtener_clase_programada(fecha):
 	return str(resultado)
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 	#alumno3 = ("alumno3@gmail.com", "alumno3", "alumno3ap1 alumno3ap2", "+34123456788", "informacion alumno3")
 	#insertar_alumno(alumno3);
 	#alumno_consulta = obtener_alumno("alumno@gmail.com")
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 	#detalles = ("23/07/1996", "1", "alumno1@gmail.com", "14:20")
 	#programar_clase(detalles)
 
-	clase = obtener_clase_programada("23/07/1996")
-	print(str(clase))
+#	clase = obtener_clase_programada("23/07/1996")
+#	print(str(clase))
 
 

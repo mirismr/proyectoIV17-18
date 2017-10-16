@@ -8,7 +8,3 @@ El despliegue en la nube se hará con *Azure*. Además para los test de integrac
 - API de *Telegram*.
 - Lenguaje de alto nivel: *Python*.
 - Base de datos: *sqlite3*, donde se almacenarán todos los datos requeridos para gestionar las clases.
-
-
-## Base de datos: sqlite3
-Para poder usar las funcionalidades de gestión de la base de datos tenemos que disponer de *sqlite3*. Para instalarlo basta con ejecutar `sudo apt-get install sqlite3`.
