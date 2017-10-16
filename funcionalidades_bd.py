@@ -27,7 +27,7 @@ def obtener_alumno(email_alumno):
 	for registro in cursor:
 		resultado+=str(registro)
 
-	return str(resultado)
+	return resultado
 
 def insertar_clase(clase):
 	"""
@@ -93,8 +93,11 @@ def obtener_clase_programada(fecha):
 #if __name__ == '__main__':
 	#alumno3 = ("alumno3@gmail.com", "alumno3", "alumno3ap1 alumno3ap2", "+34123456788", "informacion alumno3")
 	#insertar_alumno(alumno3);
-	#alumno_consulta = obtener_alumno("alumno@gmail.com")
+	#alumno_consulta = obtener_alumno("alumno3@gmail.com")
 	#print(str(alumno_consulta))
+
+	
+
 
 	#clase1 = ("1", "online", "10.5", "informatica", "0")
 	#insertar_clase(clase1);
