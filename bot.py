@@ -3,6 +3,7 @@ import sqlite3
 import requests
 import telebot
 import os
+import funcionalidades_bd as bd
 
 TOKEN = os.environ["TOKEN_BOT"]
 
@@ -19,13 +20,22 @@ def send_welcome(message):
 def programar_clase(message):
 	cid = message.chat.id
 
-	con_bd = sqlite3.connect('base_datos.db')#psycopg2.connect(database='test',user='postgres',password='pass', host='localhost')
-	#con_bd = psycopg2.connect(database='d6f0n6kc34qjo7',user=(os.environ["USR_BD"]),password=(os.environ["PASS_BD"]),host='ec2-54-225-117-56.compute-1.amazonaws.com')	
-	cursor_cid = con_bd.cursor()
+	clase = objetos.Clase("online", 10.5, "mates", False)
+	bd.insertar_clase(clase)
+	bot.send_message(cid, "La clase se insertó correctamente. \n\nIntroduzca acción que desea realizar. \nAcciones:\n1. /programar: Programar clase \n2. /hoy: clases pendientes para hoy")
 
+@bot.message_handler(commands=['hoy'])
+def programar_clase(message):
+	cid = message.chat.id
 
-	cursor_cid.close()
-	con_bd.close()
+	clases_obtenidas = bd.obtener_clases()
+	for a in clases_obtenidas:
+		bot.send_message(cid, "Sitio: ", a.sitio)
+		bot.send_message(cid, "Precio: ", a.precio)
+		bot.send_message(cid, "Materia: ", a.materia)
+		bot.send_message(cid, "Pagada: ", a.pagada)
+	
+	bot.send_message(cid, "Introduzca acción que desea realizar. \nAcciones:\n1. /programar: Programar clase \n2. /hoy: clases pendientes para hoy")
 
 
 bot.polling(none_stop=True) # siempre activo

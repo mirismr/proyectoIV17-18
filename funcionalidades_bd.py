@@ -47,6 +47,10 @@ def obtener_clase_programada(fecha):
 
 	return clase
 
+def obtener_clases():
+	clases_obtenidas = modelo.clases.select()
+
+	return clases_obtenidas
 
 #if __name__ == '__main__':
 	
