@@ -4,6 +4,7 @@ import requests
 import telebot
 import os
 import funcionalidades_bd as bd
+import modelos_objetos as objetos
 
 TOKEN = os.environ["TOKEN_BOT"]
 
