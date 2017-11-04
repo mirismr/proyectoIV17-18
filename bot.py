@@ -3,7 +3,8 @@ import sqlite3
 import requests
 import telebot
 import os
-TOKEN = '466069799:AAF2_V1gtwcA0Wyy74lfVCWpHteJmrv319g'
+
+TOKEN = os.environ["TOKEN_BOT"]
 
 bot = telebot.TeleBot(TOKEN)
 
