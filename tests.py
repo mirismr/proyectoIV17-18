@@ -28,9 +28,9 @@ class Test(unittest.TestCase):
 		cursor.execute("DELETE FROM alumnos WHERE email = 'prueba1@gmail.com'")
 		
 	def test_insertar_clase(self):
-
+		
 		alumno = objeto.Alumno("prueba@email.com", "nombre", "apellidos", "movil", "informacion")
-		clase = objeto.Clase("online", 10.5, "fisica", False)
+		clase = objeto.Clase("online", 10.5, "prueba", False)
 		
 		funcionalidades_bd.insertar_clase(clase)
 		funcionalidades_bd.insertar_alumno(alumno)
@@ -40,6 +40,9 @@ class Test(unittest.TestCase):
 		clase_funcion = funcionalidades_bd.obtener_clase_programada(date(1991,3,21))
 
 		id_ultima = modelos_bd.clases.select().order_by(modelos_bd.clases.id.desc()).get()
+
+		borrar = modelos_bd.realizadas.get(modelos_bd.realizadas.identificador == id_ultima.id)
+		borrar.delete_instance()
 
 		borrar = modelos_bd.clases.get(modelos_bd.clases.id == id_ultima.id)
 		borrar.delete_instance()
