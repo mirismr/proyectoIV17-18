@@ -1,5 +1,7 @@
-import funcionalidades_bd
+import funcionalidades_bd, modelos_bd
+import modelos_objetos as objeto
 import unittest
+from datetime import date
 import sqlite3
 
 class Test(unittest.TestCase):
@@ -20,34 +22,31 @@ class Test(unittest.TestCase):
 		cursor.execute("INSERT INTO alumnos VALUES('prueba1@gmail.com', 'prueba1', 'prueba1p1', '+34123456778', 'informacion prueba1')")
 		conexion.commit()
 		alumno_obtenido = funcionalidades_bd.obtener_alumno("prueba1@gmail.com")
+		alumno = objeto.Alumno('prueba1@gmail.com', 'prueba1', 'prueba1p1', '+34123456778', 'informacion prueba1')
 		
-		self.assertEqual("('prueba1@gmail.com', 'prueba1', 'prueba1p1', '+34123456778', 'informacion prueba1')", alumno_obtenido, "Obtener perfil alumno")
+		self.assertEqual(alumno, alumno_obtenido, "Obtener perfil alumno")
 		cursor.execute("DELETE FROM alumnos WHERE email = 'prueba1@gmail.com'")
 		
-	def test_insertar_clase_programada(self):
-		conexion = sqlite3.connect('base_datos.db')
-		cursor = conexion.cursor()
-		conexion.execute("PRAGMA foreign_keys = ON")
-		cursor.execute("DELETE FROM realizadas WHERE clase_id='99' AND email_alumno='prueba2@gmail.com'")
-		cursor.execute("DELETE FROM clases WHERE identificador='99'")
-		cursor.execute("DELETE FROM alumnos WHERE email='prueba2@gmail.com'")
-		clase1 = ("99", "online", "10.5", "informatica", "0")
-		cursor.execute("INSERT INTO clases VALUES(?, ?, ?, ?, ?)", clase1)
-		cursor.execute("INSERT INTO alumnos VALUES('prueba2@gmail.com', 'prueba2', 'prueba2p1', '+34123456778', 'informacion prueba2')")
-		detalles = ("23/07/1996", "99", "prueba2@gmail.com", "14:20")
-		cursor.execute("INSERT INTO realizadas VALUES(?, ?, ?, ?)", detalles)
-		
-		
-		cursor.execute("DELETE FROM realizadas WHERE clase_id='99' AND email_alumno='prueba2@gmail.com'")
-		conexion.commit()
+	def test_insertar_clase(self):
+		id_ultima = modelos_bd.clases.select().order_by(modelos_bd.clases.id.desc()).get()
 
-		funcionalidades_bd.programar_clase(detalles)
-		clase_funcion = cursor.execute("SELECT * FROM realizadas WHERE clase_id='99' AND email_alumno='prueba2@gmail.com'")
+		alumno = objeto.Alumno("prueba@email.com", "nombre", "apellidos", "movil", "informacion")
+		clase = objeto.Clase("online", 10.5, "fisica", False)
 		
-		cursor.execute("DELETE FROM realizadas WHERE clase_id='99' AND email_alumno='prueba2@gmail.com'")
-		clase_manual = cursor.execute("SELECT * FROM realizadas WHERE clase_id='99' AND email_alumno='prueba2@gmail.com'")
+		funcionalidades_bd.insertar_clase(clase)
+		funcionalidades_bd.insertar_alumno(alumno)
 		
-		self.assertEqual(clase_manual, clase_funcion, "Obtener clase programada")
+		borrar = modelos_bd.clases.get(modelos_bd.clases.id == id_ultima.id)
+		borrar.delete_instance()
+
+		borrar = modelos_bd.alumnos.get(modelos_bd.alumnos.email == "prueba@email.com")
+		borrar.delete_instance()
+
+		funcionalidades_bd.programar_clase(clase, alumno, date(1991,3,21))
+
+		clase_funcion = funcionalidades_bd.obtener_clase_programada(date(1991,3,21))
+
+		self.assertEqual(clase, clase_funcion, "Insertar clase programada")
 		
 
 

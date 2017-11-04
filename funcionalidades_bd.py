@@ -1,31 +1,23 @@
 import sqlite3
+import modelos_bd as modelo
+import modelos_objetos as objetos
+from datetime import date
+
+def create_tables():
+	modelo.db.connect()
+	modelo.db.create_tables([modelo.clases, modelo.alumnos, modelo.realizadas], True)
 
 def insertar_alumno(alumno):
 	"""
 	Funcion para insertar un alumno en la base de datos.
 	"""
-	conexion = sqlite3.connect('base_datos.db')
-	cursor = conexion.cursor()
-	#claves externas
-	conexion.execute("PRAGMA foreign_keys = ON")
-	try:
-		cursor.execute("INSERT INTO alumnos VALUES(?, ?, ?, ?, ?)", alumno)
-		conexion.commit()
-	except sqlite3.IntegrityError as e:
-		print('Error de integridad en la base de datos')
+	modelo.alumnos.insert(email=alumno.email, nombre=alumno.nombre, apellidos=alumno.apellidos, movil=alumno.movil, informacion=alumno.informacion).execute()
 
 def obtener_alumno(email_alumno):
 	"""
 	Funcion para obtener un alumno de la base de datos a partir de su email.
 	"""
-	conexion = sqlite3.connect('base_datos.db')
-	cursor = conexion.cursor()
-	resultado=''
-	#comprobar que email_alumno existe
-	cursor.execute('SELECT * FROM alumnos WHERE email=?', [email_alumno])
-
-	for registro in cursor:
-		resultado+=str(registro)
+	resultado = modelo.alumnos.get(modelo.alumnos.email == email_alumno)
 
 	return resultado
 
@@ -33,81 +25,50 @@ def insertar_clase(clase):
 	"""
 	Funcion para insertar una clase en la base de datos.
 	"""
-	conexion = sqlite3.connect('base_datos.db')
-	cursor = conexion.cursor()
-	#claves externas
-	conexion.execute("PRAGMA foreign_keys = ON")
-	try:
-		cursor.execute("INSERT INTO clases VALUES(?, ?, ?, ?, ?)", clase)
-		conexion.commit()
-	except sqlite3.IntegrityError as e:
-		print('Error de integridad en la base de datos')
+	modelo.clases.insert(sitio=clase.sitio, precio=clase.precio, materia=clase.materia, pagada=clase.pagada).execute()
 
 
-def obtener_clase(identificador):
-	"""
-	Funcion para obtener una clase de la base de datos dando un identificador.
-	"""
-	conexion = sqlite3.connect('base_datos.db')
-	cursor = conexion.cursor()
-	resultado=''
-	#comprobar que identificador existe
-	cursor.execute('SELECT * FROM clases WHERE identificador=?', [identificador])
-
-	for registro in cursor:
-		resultado+=str(registro)
-
-	return str(resultado)
-
-def programar_clase(detalles):
+def programar_clase(clase, alumno, fecha_pas):
 	"""
 	Funcion para registrar una futura clase en la base de datos.
 	"""
-	conexion = sqlite3.connect('base_datos.db')
-	cursor = conexion.cursor()
-	#claves externas
-	conexion.execute("PRAGMA foreign_keys = ON")
-	try:
-		cursor.execute("INSERT INTO realizadas VALUES(?, ?, ?, ?)", detalles)
-		conexion.commit()
-	except sqlite3.IntegrityError as e:
-		print(str(e))
-		print('Error de integridad en la base de datos')
+	id_ultima = modelo.clases.select().order_by(modelo.clases.id.desc()).get()
+
+	modelo.realizadas.insert(identificador=id_ultima.id,fecha=fecha_pas, email_alumno=alumno.email).execute()
+
 
 def obtener_clase_programada(fecha):
 	"""
 	Funcion para, dada una fecha, obtener las clases para dicha fecha.
 	"""
-	conexion = sqlite3.connect('base_datos.db')
-	cursor = conexion.cursor()
-	resultado=''
-	#comprobar que fecha existe
-	cursor.execute('SELECT * FROM realizadas WHERE fecha=?', [fecha])
+	resultado=modelo.realizadas.get(modelo.realizadas.fecha == fecha)
 
-	for registro in cursor:
-		resultado+=str(registro)
+	clase = modelo.clases.get(modelo.clases.id == resultado.identificador.id)
 
-	return str(resultado)
+	return clase
 
 
 #if __name__ == '__main__':
-	#alumno3 = ("alumno3@gmail.com", "alumno3", "alumno3ap1 alumno3ap2", "+34123456788", "informacion alumno3")
-	#insertar_alumno(alumno3);
-	#alumno_consulta = obtener_alumno("alumno3@gmail.com")
-	#print(str(alumno_consulta))
-
+	
+	#create_tables()
+	#alumno = objetos.Alumno("email2@email.com", "nombre", "apellidos", "movil", "informacion")
+	#insertar_alumno(alumno)
 	
 
+	#alumno = obtener_alumno("email2@email.com")
+	#print(alumno.nombre)
 
-	#clase1 = ("1", "online", "10.5", "informatica", "0")
-	#insertar_clase(clase1);
-	#consulta = obtener_clase(1)
-	#print(str(consulta))
+	#clase = objetos.Clase("online", 10.5, "mates", False)
+	#insertar_clase(clase)
 
-	#detalles = ("23/07/1996", "1", "alumno1@gmail.com", "14:20")
-	#programar_clase(detalles)
+	#programar_clase(clase, alumno, date(1996,3,21))
+	#clase = obtener_clase_programada(date(1996,3,21))
 
-#	clase = obtener_clase_programada("23/07/1996")
-#	print(str(clase))
+	
+	#clases_obtenidas = modelo.realizadas.select()
+	#for a in clases_obtenidas:
+	#	print(a.fecha)
+	#	print(a.email_alumno.email)
+	#	print(a.identificador.id)
 
 
