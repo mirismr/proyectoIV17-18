@@ -48,9 +48,9 @@ def obtener_clase_programada(fecha):
 	return clase
 
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
 	
-	#create_tables()
+	create_tables()
 	#alumno = objetos.Alumno("email2@email.com", "nombre", "apellidos", "movil", "informacion")
 	#insertar_alumno(alumno)
 	
