@@ -7,6 +7,9 @@ def create_tables():
 	modelo.db.connect()
 	modelo.db.create_tables([modelo.clases, modelo.alumnos, modelo.realizadas], True)
 
+def conectar():
+	modelo.db.connect()
+
 def insertar_alumno(alumno):
 	"""
 	Funcion para insertar un alumno en la base de datos.
@@ -49,6 +52,7 @@ def obtener_clase_programada(fecha):
 
 def obtener_clases():
 	clases_obtenidas = modelo.clases.select()
+	
 
 	return clases_obtenidas
 
