@@ -67,11 +67,13 @@ Una vez hecho esto, ya tenemos todo configurado respecto a lo que tenemos que ha
 
 `worker: python3 bot.py`
 
+y `web: gunicorn web:app --log-file=-`
+
 Una vez hecho esto, trabajaremos normal y haremos tantos push como deseemos. Si nos vamos a la página de log de *Heroku* veremos que nuestro bot está funcionando (Primera versión de prueba que solo imprime una cadena):
 
 ![Prueba despliegue bot](img/10.png)
 
 
-Nota: Como nuestro despliegue no tiene sentido en la web (ya que solamente es un archivo .py ejecutándose que dará vida al bot) si accedemos a la dirección del [despliegue](https://agendalearning.herokuapp.com/) nos dará un error, pero basta con fijarnos en los logs para comprobar que efectivamente funciona.
+Nota: Como nuestro despliegue no tiene sentido en la web (ya que solamente es un archivo .py ejecutándose que dará vida al bot) si accedemos a la dirección del [despliegue](https://agendalearning.herokuapp.com/) nos dará *status:ok*, pero basta con fijarnos en los logs para comprobar que efectivamente funciona.
 También podemos comprobarlo en [*Telegram*](https://web.telegram.org/#/im?p=@agendaLearningBot).
 
