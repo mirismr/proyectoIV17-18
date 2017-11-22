@@ -163,6 +163,20 @@ Quedando finalmente:
 
 ![DockerHub](img/22.png)
 
-Para descargar y lanzar el contenedor ejecutamos: `sudo docker pull mirismr/proyectoiv17-18` y `sudo docker run --env TOKEN_BOT=XXX -i -t contenedor-learningbot /bin/bash`
+Para descargar y lanzar el contenedor ejecutamos: `sudo docker pull mirismr/proyectoiv17-18` y `sudo docker run --env TOKEN_BOT=XXX -i -t mirismr/proyectoiv17-18 /bin/bash`
 
 ## Despliegue en Zeit
+
+
+Lo instalamos a través del comando `npm install now -g` según su [página](https://zeit.co/):
+
+![Zeit](img/23.png)
+
+A continuación, nos vamos al directorio donde esté el Dockerfile y ejecutamos `sudo now --public`:
+
+![Zeit](img/24.png)
+
+Ahora ejecutamos `now -e "TOKEN_BOT=XXX` para desplegarlo y obtener el link:
+
+![Zeit](img/25.png)
+
