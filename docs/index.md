@@ -145,4 +145,22 @@ A continuación ejecutamos el comando `sudo docker run --env TOKEN_BOT=XXX -i -t
 
 Podemos comprobar que funciona.
 
+Para la disponibilidad en DockerHub, primero debemos registrarnos en la página de [Docker](https://hub.docker.com/), a través del sencillo formulario.
+Nos llegará un correo de confirmación y ya estamos registrados.
 
+Una vez hecho esto, nos dirigimos a "Settings" y, desde "Settings", a "Linked Accounts & Services". Elegimos GitHub, "Public and Private" y lo autorizamos:
+
+![DockerHub](img/17.png)
+![DockerHub](img/18.png)
+![DockerHub](img/19.png)
+
+Ahora nos dirigimos al menú "Create", "Create Automated Build". Seleccionamos GitHub de nuevo y el repositorio:
+
+![DockerHub](img/20.png)
+![DockerHub](img/21.png)
+
+Quedando finalmente:
+
+![DockerHub](img/22.png)
+
+Para descargar y lanzar el contenedor ejecutamos: `sudo docker pull mirismr/proyectoiv17-18` y `sudo docker run --env TOKEN_BOT=XXX -i -t contenedor-learningbot /bin/bash`
