@@ -77,3 +77,20 @@ Una vez hecho esto, trabajaremos normal y haremos tantos push como deseemos. Si 
 Nota: Como nuestro despliegue no tiene sentido en la web (ya que solamente es un archivo .py ejecutándose que dará vida al bot) si accedemos a la dirección del [despliegue](https://agendalearning.herokuapp.com/) nos dará *status:ok*, pero basta con fijarnos en los logs para comprobar que efectivamente funciona.
 También podemos comprobarlo en [*Telegram*](https://web.telegram.org/#/im?p=@agendaLearningBot).
 
+## Instalación Docker
+
+Seguimos los pasos de la [documentación de Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-16-04).
+
+Añadimos la clave GPG con `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -` y ejecutamos para añadir el repositorio `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`.
+
+Actualizamos los repos `sudo apt-get update` y con `apt-cache policy docker-ce` vemos:
+
+![Cache Docker](img/11.png)
+
+Para instalar Docker introducimos el comando `sudo apt-get install -y docker-ce`:
+
+![Instalar Docker](img/12.png)
+
+Comprobamos que está activo:
+
+![Instalar Docker](img/13.png)
