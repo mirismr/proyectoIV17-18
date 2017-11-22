@@ -164,3 +164,5 @@ Quedando finalmente:
 ![DockerHub](img/22.png)
 
 Para descargar y lanzar el contenedor ejecutamos: `sudo docker pull mirismr/proyectoiv17-18` y `sudo docker run --env TOKEN_BOT=XXX -i -t contenedor-learningbot /bin/bash`
+
+## Despliegue en Zeit
