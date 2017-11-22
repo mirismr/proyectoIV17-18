@@ -94,3 +94,55 @@ Para instalar Docker introducimos el comando `sudo apt-get install -y docker-ce`
 Comprobamos que está activo:
 
 ![Instalar Docker](img/13.png)
+
+## Usando Docker y DockerHub
+
+Primero haremos las pruebas en local y a continuación usaremos *DockerHub*.
+
+Lo primero de todo será crear el Dockerfile: 
+~~~
+FROM ubuntu:14.04
+MAINTAINER Míriam Mengíbar Rodríguez <mirismr@correo.ugr.es>
+
+ARG TOKEN_BOT
+ENV TOKEN_BOT=$TOKEN_BOT
+
+
+#Instalamos git
+RUN sudo apt-get -y update
+RUN sudo apt-get install -y git
+
+#Clonamos el repositorio
+RUN sudo git clone https://github.com/mirismr/proyectoIV17-18.git
+
+
+#Instalamos las herramientas de python necesarias
+RUN sudo apt-get -y install python3-setuptools
+RUN sudo apt-get -y install python3-dev
+RUN sudo apt-get -y install build-essential
+RUN sudo apt-get -y install python3-psycopg2
+RUN sudo apt-get -y install libpq-dev
+RUN sudo apt-get -y install python3-pip
+
+#Instalamos los requerimientos necesarios
+RUN cd proyectoIV17-18 && make install
+~~~
+
+Este fichero se encargará de indicarle a Docker las dependencias y demás herramientas que necesita nuestra aplicación tener instaladas en el contenedor para que funcione.
+
+Para la prueba en local, ejecutamos el comando `docker build -f Dockerfile -t ccontenedor-learningbot .`:
+
+![Instalando en local](img/14.png)
+
+Podemos ver como se ejecutarán todos los "pasos" de nuestro *Dockerfile*.
+Cuando termine, podemos ver como se ha creado el contendor para nuestra aplicación:
+
+![Instalando en local](img/15.png)
+
+A continuación ejecutamos el comando `sudo docker run --env TOKEN_BOT=XXX -i -t contenedor-learningbot /bin/bash`, donde se ha omitido el token del bot por privacidad, y ejecutamos el bot:
+
+![Instalando en local](img/16.png)
+
+Podemos comprobar que funciona.
+
+
