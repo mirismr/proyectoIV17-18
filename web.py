@@ -7,16 +7,13 @@ app = Flask(__name__)
    "status": "OK"
 }
 
-"""
-{
-   "status": "OK",
-   "ejemplo": { "ruta": "/ruta/parametro",
-                "valor": "{JSON: devuelto}"
-              }
-}
-"""
 
 @app.route("/")
+def raiz():
+    data = {"status": "OK"}
+    return json.dumps(data)
+
+@app.route("/status")
 def raiz():
     data = {"status": "OK"}
     return json.dumps(data)
