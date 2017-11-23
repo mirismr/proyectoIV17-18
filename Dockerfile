@@ -23,3 +23,5 @@ RUN sudo apt-get -y install python3-pip
 
 #Instalamos los requerimientos necesarios
 RUN cd proyectoIV17-18 && make install
+
+EXPOSE 80

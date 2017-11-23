@@ -130,7 +130,7 @@ RUN cd proyectoIV17-18 && make install
 
 Este fichero se encargará de indicarle a Docker las dependencias y demás herramientas que necesita nuestra aplicación tener instaladas en el contenedor para que funcione.
 
-Para la prueba en local, ejecutamos el comando `docker build -f Dockerfile -t ccontenedor-learningbot .`:
+Para la prueba en local, ejecutamos el comando `docker build -f Dockerfile -t contenedor-learningbot .`:
 
 ![Instalando en local](img/14.png)
 
