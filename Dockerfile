@@ -25,5 +25,4 @@ RUN sudo apt-get -y install python3-pip
 RUN cd proyectoIV17-18 && make install
 
 EXPOSE 80
-RUN ls
 CMD cd proyectoIV17-18 && ./scriptDespliegue.sh
