@@ -14,7 +14,7 @@ def raiz():
     return json.dumps(data)
 
 @app.route("/status")
-def raiz():
+def status():
     data = {"status": "OK"}
     return json.dumps(data)
 
