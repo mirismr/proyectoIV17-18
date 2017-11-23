@@ -31,6 +31,6 @@ Podemos ver la configuración de *DockerHub* en el [siguiente enlace](https://mi
 
 ## Despliegue en Zeit
 
-Contenedor: https://proyectoiv17-18-gpdkiclhbf.now.sh
+Contenedor: https://proyectoiv17-18-vofcatxdge.now.sh/
 
 Podemos ver la configuración de *Zeit* en el [siguiente enlace](https://mirismr.github.io/proyectoIV17-18/).

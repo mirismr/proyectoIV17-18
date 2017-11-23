@@ -128,8 +128,7 @@ RUN sudo apt-get -y install python3-pip
 RUN cd proyectoIV17-18 && make install
 
 EXPOSE 80
-WORKDIR proyectoIV17-18/
-CMD ./scriptDespliegue.sh
+CMD cd proyectoIV17-18 && ./scriptDespliegue.sh
 ~~~
 
 Este fichero se encargará de indicarle a Docker las dependencias y demás herramientas que necesita nuestra aplicación tener instaladas en el contenedor para que funcione.
