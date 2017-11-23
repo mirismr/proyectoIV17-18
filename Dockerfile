@@ -26,4 +26,4 @@ RUN cd proyectoIV17-18 && make install
 
 EXPOSE 80
 RUN ls
-CMD ./scriptDespliegue.sh
+CMD cd proyectoIV17-18 && ./scriptDespliegue.sh
