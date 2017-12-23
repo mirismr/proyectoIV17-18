@@ -30,4 +30,4 @@ def StartApp():
 		# Iniciamos bot
 		run('cd ~/proyectoIV17-18/ && python3 bot.py &')
 		# Iniciamos el servicio web
-		run('cd ~/proyectoIV17-18/ && python3 web.py',pty=False)
+		run('cd ~/proyectoIV17-18/ && sudo -E python3 web.py',pty=False)
