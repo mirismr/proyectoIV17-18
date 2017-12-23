@@ -27,6 +27,7 @@ def RemoveApp():
 def StartApp():
 	# Importamos las variables globales
 	with shell_env(TOKEN=os.environ["TOKEN_BOT"]):
+		# Iniciamos bot
+		run('python3 bot.py &')
 		# Iniciamos el servicio web
-		run('cd ~/proyectoIV17-18/ && sudo -E python3 web.py',pty=False)
-		run('python3 bot.py')
+		run('cd ~/proyectoIV17-18/ && sudo -E python3 web.py &',pty=False)
