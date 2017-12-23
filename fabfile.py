@@ -8,8 +8,14 @@ def InstallApp():
 	# Descargamos el repositorio
 	run('git clone https://github.com/mirismr/proyectoIV17-18.git')
 
-	# Instalamos pip3
-	run('sudo apt-get install -y python3-pip')
+	# Instalamos herramientas
+	run('sudo apt-get update')
+	run('sudo apt-get -y install python3-setuptools')
+	run('sudo apt-get -y install python3-dev')
+	run('sudo apt-get -y install build-essential')
+	run('sudo apt-get -y install python3-psycopg2')
+	run('sudo apt-get -y install libpq-dev')
+	run('sudo apt-get -y install python3-pip')
 
 	# Instalamos las dependencias
 	run('cd proyectoIV17-18/ && pip3 install -r requirements.txt')
@@ -23,3 +29,4 @@ def StartApp():
 	with shell_env(TOKEN=os.environ["TOKEN_BOT"]):
 		# Iniciamos el servicio web
 		run('cd ~/proyectoIV17-18/ && sudo -E python3 web.py',pty=False)
+		run('python3 bot.py')
