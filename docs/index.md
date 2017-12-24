@@ -183,3 +183,175 @@ Ahora ejecutamos `now -e "TOKEN_BOT=XXX` para desplegarlo y obtener el link:
 
 ![Zeit](img/25.png)
 
+## Despliegue en Azure
+
+Azure nos permitirá desplegar nuestra aplicación en IaaS. Hemos podido realizar esta tarea gratuitamente gracias al código proporcionado por el profesor de la asignatura.
+
+Primero debemos instalar Vagrant, que nos permitirá crear la máquina virtual. Yo ya la tenía instalada de la asignatura DAI. A continuación instalamos el plugin de Azure para Vagrant:
+
+![Plugin](img/26.png)
+
+A continuación, instalamos Ansible para automatizar el proceso:
+
+![Ansible](img/27.png)
+
+Y configuramos el fichero `var.yml` donde declaramos variables y dependencias del sistema:
+
+~~~
+project_name: proyectoIV17-18
+project_repo: https://github.com/mirismr/proyectoIV17-18.git
+project_path: .
+
+system_packages:
+  - build-essential
+  - npm
+  - git
+~~~
+
+Además, necesitaremos el fichero `playbook.yml`, el cual se encargará del provisionamiento de Ansible: instalar dependencias y clonar nuestro repo. Su contenido es el siguiente:
+
+~~~
+- hosts: all
+  remote_user: vagrant
+  vars_files:
+    - var.yml
+  gather_facts: no
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Instalar paquetes
+      apt: pkg={{ item }} update-cache=yes cache_valid_time=3600
+      with_items: "{{ system_packages }}"
+
+    - name: Descargar fuentes
+      git: repo={{project_repo}} dest={{proyect_path}} clone=yes force=yes
+    - name: Run npm install
+      npm: path={{proyect_path}}
+~~~
+
+En los ejercicios de los primeros temas, vimos como registrarnos en Azure. Una vez con la cuenta creada, tenemos que instalar el cliente:
+
+![Cliente](img/28.png)
+
+A continuación, hacemos login con el cliente para entrar con nuestra cuenta de Azure. Ésto se hace a través de un código que debemos introducir en la página web que el propio cliente nos proporciona:
+
+![Login](img/29.png)
+
+Entramos en el modo asm para poder descargamos el archivo del pase. Justo después lo importamos:
+
+![Pase](img/30.png)
+
+Una vez hecho esto, debemos crear los certificados de seguridad y darle permisos:
+
+![Certificados](img/31.png)
+
+Cuando lo hemos creado (archivo .cer), lo subimos a Azure a través del panel de administración:
+
+![Certificado](img/32.png)
+
+Y después crear la aplicación en Azure Active Directory:
+
+![Aplicación](img/33.png)
+
+Encontramos la información de la aplicación si hacemos click en ella.
+Por último, tenemos que añadir la aplicación como usuario colaborador:
+
+![Añadir aplicación colaborador](img/34.png)
+
+
+Una vez configurado el portal, lo único que nos queda es modificar el fichero `Vagrantfile`, donde pondremos la configuración de la máquina virtual e instalar la máquina. El contenido de `Vagrantfile` es:
+~~~
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+
+  config.vm.box = 'azure'
+  config.vm.box_url = 'https://github.com/msopentech/vagrant-azure/raw/master/dummy.box' #Caja base vacía
+  config.vm.network "private_network",ip: "192.168.11.4", virtualbox__intnet: "vboxnet0" #Ip privada
+  config.vm.hostname = "localhost"
+  config.vm.network "forwarded_port", guest: 80, host: 80
+
+  # use local ssh key to connect to remote vagrant box
+  config.vm.provider :azure do |azure, override|
+    config.ssh.private_key_path = '~/.ssh/id_rsa'
+    azure.vm_image_urn = 'canonical:UbuntuServer:16.04-LTS:16.04.201701130'
+    azure.vm_size = 'Basic_A0'
+    azure.location = 'southcentralus'
+    azure.tcp_endpoints = '80'
+    azure.vm_name = "maquinaagendalearning"
+    azure.resource_group_name= "agendaLearning"
+    azure.tenant_id = ENV["AZURE_TENANT_ID"]
+    azure.client_id = ENV["AZURE_CLIENT_ID"]
+    azure.client_secret = ENV["AZURE_CLIENT_SECRET"]
+    azure.subscription_id = ENV["AZURE_SUBSCRIPTION_ID"]
+
+
+    
+  end
+
+  # Provisionar con ansible
+  config.vm.provision "ansible" do |ansible|
+    ansible.sudo = true
+    ansible.playbook = "./playbook.yml"
+    ansible.verbose = "-vvvv"
+
+    ansible.host_key_checking = false
+  end
+
+end
+~~~
+
+Para instalar la máquina ejecutamos `vagrant up --provider=azure`:
+
+![Instalar](img/35.png)
+
+![Instalar](img/36.png)
+
+Necesitamos abrir el puerto 80 de la máquina:
+
+![Abriendo puertos](img/37.png)
+
+Para desplegar la aplicación cómodamente podemos usar Fabric. Así que hacemos varias funciones en el fichero `fabfile.py`. El contenido de éste es el siguiente:
+
+~~~
+# coding: utf-8
+
+from fabric.api import sudo, cd, env, run, shell_env
+import os
+
+
+def InstallApp():
+    # Descargamos el repositorio
+    run('git clone https://github.com/mirismr/proyectoIV17-18.git')
+
+    # Instalamos herramientas
+    run('sudo apt-get update')
+    run('sudo apt-get -y install python3-setuptools')
+    run('sudo apt-get -y install python3-dev')
+    run('sudo apt-get -y install build-essential')
+    run('sudo apt-get -y install python3-psycopg2')
+    run('sudo apt-get -y install libpq-dev')
+    run('sudo apt-get -y install python3-pip')
+
+    # Instalamos las dependencias
+    run('cd proyectoIV17-18/ && pip3 install -r requirements.txt')
+
+def RemoveApp():
+    # Borramos directorio repo
+    run('sudo rm -rf ./proyectoIV17-18')
+
+def StartApp():
+    # Importamos las variables globales
+    with shell_env(TOKEN=os.environ["TOKEN_BOT"]):
+        # Iniciamos bot
+        run('cd ~/proyectoIV17-18/ && python3 bot.py &')
+        # Iniciamos el servicio web
+        run('cd ~/proyectoIV17-18/ && sudo -E python3 web.py',pty=False)
+~~~
+
+
+
+Para comprobar que funciona nos metemos en la url:
+
+![Comprobacion](img/38.png)
