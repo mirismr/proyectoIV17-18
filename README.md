@@ -37,6 +37,6 @@ Podemos ver la configuración de *Zeit* en el [siguiente enlace](https://mirismr
 
 ## Despliegue en Azure
 
-Despliegue: maquinaagendalearning.southcentralus.cloudapp.azure.com
+Despliegue final: maquinaagendalearning.southcentralus.cloudapp.azure.com
 
 Podemos ver la configuración de *Azure* y demás herramientas para el despliegue IaaS en el [siguiente enlace](https://mirismr.github.io/proyectoIV17-18/).
