@@ -11,7 +11,7 @@ El despliegue en la nube se hará con *Heroku*. Además para los test de integra
 ## Servicios requeridos
 - API de *Telegram*.
 - Lenguaje de alto nivel: *Python*.
-- Base de datos: *sqlite3* y *PostgreSQL*, donde se almacenarán todos los datos requeridos para gestionar las clases.
+- Base de datos: *sqlite3*, donde se almacenarán todos los datos requeridos para gestionar las clases.
 
 ## Tests
 Para la realización de los tests en *Python* he usado la librería *unittest* dado su simplicidad y que no requiere ninguna instalación extra.
@@ -34,3 +34,9 @@ Podemos ver la configuración de *DockerHub* en el [siguiente enlace](https://mi
 Contenedor: https://proyectoiv17-18-dtnzpkytwo.now.sh
 
 Podemos ver la configuración de *Zeit* en el [siguiente enlace](https://mirismr.github.io/proyectoIV17-18/).
+
+## Despliegue en Azure
+
+Despliegue: maquinaagendalearning.southcentralus.cloudapp.azure.com
+
+Podemos ver la configuración de *Azure* y demás herramientas para el despliegue IaaS en el [siguiente enlace](https://mirismr.github.io/proyectoIV17-18/).
