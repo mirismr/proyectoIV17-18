@@ -9,7 +9,7 @@ class Test(unittest.TestCase):
 		conexion = sqlite3.connect('base_datos.db')
 		cursor = conexion.cursor()
 		cursor.execute("DELETE FROM alumnos WHERE email = 'prueba@gmail.com'")
-		cursor.execute("INSERT INTO alumnos VALUES('prueba@gmail.com', 'prueba', 'pruebap1', '+34123456778', 'informacion prueba')")
+		cursor.execute("INSERT INTO alumnos VALUES('prueba@gmail.com', 'prueba', '+34123456778')")
 		conexion.commit()
 		ultima_fila = cursor.lastrowid
 		cursor.execute("DELETE FROM alumnos WHERE email = 'prueba@gmail.com'")
@@ -19,25 +19,25 @@ class Test(unittest.TestCase):
 		conexion = sqlite3.connect('base_datos.db')
 		cursor = conexion.cursor()
 		cursor.execute("DELETE FROM alumnos WHERE email = 'prueba1@gmail.com'")
-		cursor.execute("INSERT INTO alumnos VALUES('prueba1@gmail.com', 'prueba1', 'prueba1p1', '+34123456778', 'informacion prueba1')")
+		cursor.execute("INSERT INTO alumnos VALUES('prueba1@gmail.com', 'prueba', '+34123456778')")
 		conexion.commit()
 		alumno_obtenido = funcionalidades_bd.obtener_alumno("prueba1@gmail.com")
-		alumno = objeto.Alumno('prueba1@gmail.com', 'prueba1', 'prueba1p1', '+34123456778', 'informacion prueba1')
+		alumno = objeto.Alumno('prueba1@gmail.com', 'prueba', '+34123456778')
 		
 		self.assertEqual(alumno, alumno_obtenido, "Obtener perfil alumno")
 		cursor.execute("DELETE FROM alumnos WHERE email = 'prueba1@gmail.com'")
 		
 	def test_insertar_clase(self):
 		
-		alumno = objeto.Alumno("prueba@email.com", "nombre", "apellidos", "movil", "informacion")
-		clase = objeto.Clase("online", 10.5, "prueba", False)
+		alumno = objeto.Alumno("prueba2@email.com", "nombre", "movil")
+		clase = objeto.Clase("online", 10.5, "prueba", False, "15:00")
 		
 		funcionalidades_bd.insertar_clase(clase)
 		funcionalidades_bd.insertar_alumno(alumno)
 
 		funcionalidades_bd.programar_clase(clase, alumno, date(1991,3,21))
 
-		clase_funcion = funcionalidades_bd.obtener_clase_programada(date(1991,3,21))
+		clase_funcion = funcionalidades_bd.obtener_clases_programadas(date(1991,3,21))
 
 		id_ultima = modelos_bd.clases.select().order_by(modelos_bd.clases.id.desc()).get()
 
