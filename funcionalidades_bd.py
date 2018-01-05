@@ -50,7 +50,7 @@ def obtener_clase_programada(fecha):
 
 	return clase
 
-''' Obtiene todas las clases de la bd'''
+''' Obtiene todas las clases de la bd, tabla realizadas'''
 def obtener_clases():
 	clases_obtenidas = modelo.clases.select()
 
