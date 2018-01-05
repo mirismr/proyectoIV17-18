@@ -28,7 +28,7 @@ def insertar_clase(clase):
 	"""
 	Funcion para insertar una clase en la base de datos.
 	"""
-	modelo.clases.insert(sitio=clase.sitio, precio=clase.precio, materia=clase.materia, pagada=clase.pagada).execute()
+	modelo.clases.insert(sitio=clase.sitio, precio=clase.precio, materia=clase.materia, pagada=clase.pagada, hora=clase.hora).execute()
 
 
 def programar_clase(clase, alumno, fecha_pas):
@@ -40,7 +40,7 @@ def programar_clase(clase, alumno, fecha_pas):
 	modelo.realizadas.insert(identificador=id_ultima.id,fecha=fecha_pas, email_alumno=alumno.email).execute()
 
 
-def obtener_clase_programada(fecha):
+def obtener_clases_programadas(fecha):
 	"""
 	Funcion para, dada una fecha, obtener las clases para dicha fecha.
 	"""
@@ -56,17 +56,29 @@ def obtener_clases():
 
 	return clases_obtenidas
 
+''' Comprobar si hay una clase en la misma fecha a la misma hora'''
+def hora_reservada(fecha, hora):
+	try:
+		resultado = modelo.clases.get(modelo.clases.hora == hora)
+		reservada = True
+	except Exception as e:
+		reservada = False
+	finally:
+		return reservada
+
+
+'''
 if __name__ == '__main__':
-	
+
 	create_tables()
-	alumno = objetos.Alumno("email2@email.com", "nombre", "movil", "informacion")
+	alumno = objetos.Alumno("2@email.com", "alumno2", "movil2")
 	insertar_alumno(alumno)
 	
 
 	#alumno = obtener_alumno("email2@email.com")
 	#print(alumno.nombre)
 
-	clase = objetos.Clase("online", 10.5, "mates", False)
+	clase = objetos.Clase("online", 10.5, "mates", True, "15:00")
 	insertar_clase(clase)
 
 	programar_clase(clase, alumno, date(1996,3,21))
@@ -78,5 +90,7 @@ if __name__ == '__main__':
 		print(a.fecha)
 		print(a.email_alumno.email)
 		print(a.identificador.id)
+
+	print(hora_reservada(date(1996,3,21), "1:00"))'''
 
 

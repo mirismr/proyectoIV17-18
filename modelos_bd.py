@@ -12,6 +12,7 @@ class clases(BaseModel):
 	precio = FloatField()
 	materia = CharField()
 	pagada = BooleanField()
+	hora = CharField()
 
 class alumnos(BaseModel):
 	email = CharField(primary_key=True)
