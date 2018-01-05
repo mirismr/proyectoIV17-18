@@ -14,7 +14,7 @@ def insertar_alumno(alumno):
 	"""
 	Funcion para insertar un alumno en la base de datos.
 	"""
-	modelo.alumnos.insert(email=alumno.email, nombre=alumno.nombre, apellidos=alumno.apellidos, movil=alumno.movil, informacion=alumno.informacion).execute()
+	modelo.alumnos.insert(email=alumno.email, nombre=alumno.nombre, movil=alumno.movil).execute()
 
 def obtener_alumno(email_alumno):
 	"""
@@ -56,27 +56,27 @@ def obtener_clases():
 
 	return clases_obtenidas
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
 	
-#	create_tables()
-	#alumno = objetos.Alumno("email2@email.com", "nombre", "apellidos", "movil", "informacion")
-	#insertar_alumno(alumno)
+	create_tables()
+	alumno = objetos.Alumno("email2@email.com", "nombre", "movil", "informacion")
+	insertar_alumno(alumno)
 	
 
 	#alumno = obtener_alumno("email2@email.com")
 	#print(alumno.nombre)
 
-	#clase = objetos.Clase("online", 10.5, "mates", False)
-	#insertar_clase(clase)
+	clase = objetos.Clase("online", 10.5, "mates", False)
+	insertar_clase(clase)
 
-	#programar_clase(clase, alumno, date(1996,3,21))
+	programar_clase(clase, alumno, date(1996,3,21))
 	#clase = obtener_clase_programada(date(1996,3,21))
 
 	
-	#clases_obtenidas = modelo.realizadas.select()
-	#for a in clases_obtenidas:
-	#	print(a.fecha)
-	#	print(a.email_alumno.email)
-	#	print(a.identificador.id)
+	clases_obtenidas = modelo.realizadas.select()
+	for a in clases_obtenidas:
+		print(a.fecha)
+		print(a.email_alumno.email)
+		print(a.identificador.id)
 
 
