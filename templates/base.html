@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="static/logotipo.png">
+
+    <title>{% block title %}Inicio{% endblock %} - Higr</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/main.css" rel="stylesheet">
+    
+    {% endblock %}
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/inicio"><img src="/static/img/logotipo.png"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+        	{% block navbar %}
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/inicio">INICIO</a></li>
+            <li><a href="/about">ACERCA DE HIGR</a></li>
+            <li><a id="registrate" href="/signup">REGISTRATE EN HIGR</a></li>
+            {% if "logged" in session %}
+            <li><a href="/users/{{ nombre_usuario }}">MI PERFIL</a></li>
+            <li><a href="/login">SALIR</a></li>
+            {% else %}
+            <li><a href="/login_pagina">LOGIN</a></li>
+            {% endif %}
+            <li><a href="/practica_mongo">PAGINADOR P5</a></li>
+            <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
+          </ul>
+          	{% endblock %}
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    {% block cabecera %}
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-8 col-lg-offset-2">
+				<h1>¿Aún no eres <b>Higuera</b>?</h1>
+				<h2><a class="unete" href="/signup">¡Únete ahora!</a></h2>
+				</div>
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- headerwrap -->
+	{% endblock %}
+
+
+	{% block content %}
+	<div class="container w">
+		<div class="row centered">
+			<br><br>
+			<div class="col-lg-4">
+				<i class="fa fa-heart"></i>
+				<h4>ENCUENTRA</h4>
+				<p>¿Cansada de buscar a tu media naranja? ¡Entra en Higr y conoce a tu medio higo más cercano según tu ubicación!</p>
+			</div><!-- col-lg-4 -->
+
+			<div class="col-lg-4">
+				<i class="fa fa-laptop"></i>
+				<h4>RED SOCIAL</h4>
+				<p>Higr es tu nueva red social de chicas para encontrar el amor. Baja la aplicación para Android o IOS y regístrate, ¡solo te llevará unos minutos!.</p>
+			</div><!-- col-lg-4 -->
+
+			<div class="col-lg-4">
+				<i class="fa fa-trophy"></i>
+				<h4>SOPORTE</h4>
+				<p>Si tienes alguna duda tienes a tu disposición un equipo dispuesto a ayudarte en lo que necesites. Para más información dirígete en el menú al apartado de contacto.</p>
+			</div><!-- col-lg-4 -->
+		</div><!-- row -->
+		<br>
+		<br>
+	</div><!-- container -->
+
+	<!-- PORTFOLIO SECTION -->
+	<div id="dg">
+		<div class="container">
+			<div class="row centered">
+				<h4>LOREM IPSUM</h4>
+				<br>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vulputate est a mauris consectetur congue. Aenean efficitur sapien congue turpis fermentum, eu sodales nulla interdum. Ut diam dolor, bibendum vel ex vel, vehicula porttitor elit. Suspendisse scelerisque tincidunt imperdiet. Mauris interdum facilisis lobortis. Morbi gravida porta dolor. Pellentesque orci nulla, efficitur eu posuere at, ultrices vitae erat. Suspendisse sit amet aliquet nisi, eget sodales eros. Maecenas vel commodo diam, non ultricies metus. Ut commodo nec ante a pretium.</p>
+
+				<a href="#" class="aumentarFont">[ + aumentar ]</a> 
+				<a href="#" class="disminuirFont">[ - disminuir ]</a> 
+				<a href="#" class="resetearFont">[ resetear ]</a>
+				<a href="#" class="cambiarColor"> [Cambiar color ]</a>
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- DG -->
+	{% endblock %}
+
+	<div id="r">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-8 col-lg-offset-2">
+					<h4>Míriam Mengíbar Rodríguez &copy</h4>
+					<p>Página web diseñada para la asignatura Desarrollo de aplicaciones de Internet. Escuela Técnica Superior de Ingeniería Informática y Telecomunicaciones. Universidad de Granada.</p>
+				</div>
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- r wrap -->
+	
+	
+	<!-- FOOTER -->
+	<div id="f">
+		<div class="container">
+			<div class="row centered">
+				<a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-dribbble"></i></a>
+		
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!-- Footer -->
+
+
+	<!-- MODAL FOR CONTACT -->
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">¡Contacta con nosotros!</h4>
+	      </div>
+	      <div class="modal-body">
+		        <div class="row centered">
+		        	<p>Estamos disponibles 24h, 7 días a la semana, no dudes en contactar con nosotros.</p>
+		        	<p>
+		        		C/ Veracruz nº 10<br/>
+						Granada, España.<br/>
+						+32 693836119<br/>
+						support@higr.com
+		        	</p>
+		        	<div id="mapwrap">
+		<iframe height="300" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed"></iframe>
+					</div>	
+		        </div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Entendido</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- Cargar jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.sobekdigital.com/includes/jquery-rotate/2.2/jquery-rotate.js"></script>
+    <!--Cargar script con efectos -->
+    <script src="/static/js/jquery.js"></script>
+  </body>
+</html>
