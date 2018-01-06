@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def raiz():
+	run('cd ~/proyectoIV17-18/')
     return render_template('templates/base.html')
 
 @app.route("/status")
@@ -20,6 +21,7 @@ def status():
 
 @app.route("/hoy")
 def hoy():
+	run('cd ~/proyectoIV17-18/')
     return render_template('templates/paginador.html')
 
 
