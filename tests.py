@@ -50,7 +50,7 @@ class Test(unittest.TestCase):
 		borrar = modelos_bd.alumnos.get(modelos_bd.alumnos.email == "prueba2@email.com")
 		borrar.delete_instance()
 
-		self.assertEqual(clase, clase_funcion, "Insertar clase programada")
+		self.assertEqual(clase, clase_funcion[0], "Insertar clase programada")
 		
 
 
