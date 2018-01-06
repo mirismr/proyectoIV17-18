@@ -18,7 +18,7 @@ def status():
     return json.dumps(data)
 
 @app.route("/hoy")
-def status():
+def hoy():
     return render_template('paginador.html')
 
 
