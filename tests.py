@@ -30,7 +30,7 @@ class Test(unittest.TestCase):
 	def test_insertar_clase(self):
 		
 		alumno = objeto.Alumno("prueba2@email.com", "nombre", "movil")
-		clase = objeto.Clase("online", 10.5, "prueba", False, "15:00")
+		clase = objeto.Clase("online", 10.5, "prueba", "15:00")
 		
 		funcionalidades_bd.insertar_clase(clase)
 		funcionalidades_bd.insertar_alumno(alumno)
