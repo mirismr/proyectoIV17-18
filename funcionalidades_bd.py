@@ -28,7 +28,7 @@ def insertar_clase(clase):
 	"""
 	Funcion para insertar una clase en la base de datos.
 	"""
-	modelo.clases.insert(sitio=clase.sitio, precio=clase.precio, materia=clase.materia, pagada=clase.pagada, hora=clase.hora).execute()
+	modelo.clases.insert(sitio=clase.sitio, precio=clase.precio, materia=clase.materia, hora=clase.hora).execute()
 
 
 def programar_clase(clase, alumno, fecha_pas):
@@ -36,7 +36,7 @@ def programar_clase(clase, alumno, fecha_pas):
 	Funcion para registrar una futura clase en la base de datos.
 	"""
 	id_ultima = modelo.clases.select().order_by(modelo.clases.id.desc()).get()
-
+	fecha_pas = str(fecha_pas)
 	modelo.realizadas.insert(identificador=id_ultima.id,fecha=fecha_pas, email_alumno=alumno.email).execute()
 
 
@@ -44,11 +44,19 @@ def obtener_clases_programadas(fecha):
 	"""
 	Funcion para, dada una fecha, obtener las clases para dicha fecha.
 	"""
-	resultado=modelo.realizadas.get(modelo.realizadas.fecha == fecha)
 
-	clase = modelo.clases.get(modelo.clases.id == resultado.identificador.id)
+	fecha_str = str(fecha)
 
-	return clase
+	resultado = modelo.realizadas.select().where(modelo.realizadas.fecha == fecha_str)
+	list_resultado = list(resultado)
+
+	clases = []
+	for i in list_resultado:
+		clases.append(modelo.clases.get(modelo.clases.id == i.identificador.id))
+
+	#alumno = modelo.alumnos.get(modelo.alumnos.email == resultado.email.email)
+
+	return clases
 
 ''' Obtiene todas las clases de la bd, tabla realizadas'''
 def obtener_clases():
@@ -67,18 +75,18 @@ def hora_reservada(fecha, hora):
 		return reservada
 
 
-'''
-if __name__ == '__main__':
+
+'''if __name__ == '__main__':
 
 	create_tables()
 	alumno = objetos.Alumno("2@email.com", "alumno2", "movil2")
 	insertar_alumno(alumno)
 	
 
-	#alumno = obtener_alumno("email2@email.com")
+alumno = obtener_alumno("2@email.com")
 	#print(alumno.nombre)
 
-	clase = objetos.Clase("online", 10.5, "mates", True, "15:00")
+	clase = objetos.Clase("online", 10.5, "mates", "17:00")
 	insertar_clase(clase)
 
 	programar_clase(clase, alumno, date(1996,3,21))
@@ -89,8 +97,4 @@ if __name__ == '__main__':
 	for a in clases_obtenidas:
 		print(a.fecha)
 		print(a.email_alumno.email)
-		print(a.identificador.id)
-
-	print(hora_reservada(date(1996,3,21), "1:00"))'''
-
-
+		print(a.identificador.id)'''

@@ -11,7 +11,6 @@ class clases(BaseModel):
 	sitio = CharField()
 	precio = FloatField()
 	materia = CharField()
-	pagada = BooleanField()
 	hora = CharField()
 
 class alumnos(BaseModel):
@@ -22,7 +21,7 @@ class alumnos(BaseModel):
 class realizadas(BaseModel):
 	identificador = ForeignKeyField(clases)
 	email_alumno = ForeignKeyField(alumnos)
-	fecha = DateField()
+	fecha = CharField()
 
 	class Meta:
 		primary_key = CompositeKey('identificador', 'email_alumno')

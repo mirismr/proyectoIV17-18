@@ -9,14 +9,13 @@ class Alumno:
 
 
 class Clase:
-	def __init__(self, n, a, m, i, h):
+	def __init__(self, n, a, m, h):
 		self.sitio = n
 		self.precio = a
 		self.materia = m
-		self.pagada = i
 		self.hora = h
 		
 	def __eq__(self, other): 
-		return self.sitio == other.sitio and self.precio == other.precio and self.materia == other.materia and self.pagada == other.pagada and self.hora == other.hora
+		return self.sitio == other.sitio and self.precio == other.precio and self.materia == other.materia and self.hora == other.hora
 
 

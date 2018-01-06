@@ -187,6 +187,8 @@ Ahora ejecutamos `now -e "TOKEN_BOT=XXX` para desplegarlo y obtener el link:
 
 Azure nos permitirá desplegar nuestra aplicación en IaaS. Hemos podido realizar esta tarea gratuitamente gracias al código proporcionado por el profesor de la asignatura.
 
+La información y detalles de configuración vienen en la [página oficial](https://docs.microsoft.com/es-es/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+
 Primero debemos instalar Vagrant, que nos permitirá crear la máquina virtual. Yo ya la tenía instalada de la asignatura DAI. A continuación instalamos el plugin de Azure para Vagrant:
 
 ![Plugin](img/26.png)
@@ -350,6 +352,8 @@ def StartApp():
         run('cd ~/proyectoIV17-18/ && sudo -E python3 web.py',pty=False)
 ~~~
 
+Ejemplo de ejecución:
+`fab -H vagrant@maquinaagendalearning.southcentralus.cloudapp.azure.com StartApp`
 
 
 Para comprobar que funciona nos metemos en la url:
