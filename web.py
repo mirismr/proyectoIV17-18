@@ -15,7 +15,7 @@ app = Flask(__name__)
 @app.route("/")
 def raiz():
 	subprocess.call(['ls', '-l', 'templates'])
-	return render_template('templates/base.html')
+	return render_template('/templates/base.html')
 
 @app.route("/status")
 def status():
@@ -24,7 +24,7 @@ def status():
 
 @app.route("/hoy")
 def hoy():
-	return render_template('templates/paginador.html')
+	return render_template('paginador.html')
 
 
 if __name__ == "__main__":
