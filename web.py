@@ -10,13 +10,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def raiz():
-    data = {"status": "OK"}
-    return json.dumps(data)
+    return render_template('base.html')
 
 @app.route("/status")
 def status():
     data = {"status": "OK"}
     return json.dumps(data)
+
+@app.route("/hoy")
+def status():
+    return render_template('paginador.html')
 
 
 if __name__ == "__main__":
