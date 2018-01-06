@@ -25,10 +25,13 @@ def status():
 def hoy():
 
 	bd.create_tables()
+
 	mes = int(time.strftime("%m"))
 	dia = int(time.strftime("%d"))
 
 	clases = bd.obtener_clases_programadas(date(2018, mes, dia))
+
+	bd.close()
 
 	return render_template('paginador.html', lista_clases=clases)
 

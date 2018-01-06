@@ -10,6 +10,9 @@ def create_tables():
 def conectar():
 	modelo.db.connect()
 
+def close():
+	modelo.db.close()
+
 def insertar_alumno(alumno):
 	"""
 	Funcion para insertar un alumno en la base de datos.
