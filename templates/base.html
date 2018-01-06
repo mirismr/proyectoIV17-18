@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="static/logotipo.png">
 
-    <title>{% block title %}Inicio{% endblock %} - Higr</title>
+    <title>{% block title %}Inicio{% endblock %} - Agenda Learning</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
@@ -32,21 +32,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/inicio"><img src="/static/img/logotipo.png"></a>
+          <a class="navbar-brand" href="/"><img src="/static/img/logotipo.png"></a>
         </div>
         <div class="navbar-collapse collapse">
         	{% block navbar %}
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="/inicio">INICIO</a></li>
-            <li><a href="/about">ACERCA DE HIGR</a></li>
-            <li><a id="registrate" href="/signup">REGISTRATE EN HIGR</a></li>
-            {% if "logged" in session %}
-            <li><a href="/users/{{ nombre_usuario }}">MI PERFIL</a></li>
-            <li><a href="/login">SALIR</a></li>
-            {% else %}
-            <li><a href="/login_pagina">LOGIN</a></li>
-            {% endif %}
-            <li><a href="/practica_mongo">PAGINADOR P5</a></li>
+            <li class="active"><a href="/">INICIO</a></li>
+            <li><a href="/hoy">HOY</a></li>
             <li><a data-toggle="modal" data-target="#myModal" href="#myModal"><i class="fa fa-envelope-o"></i></a></li>
           </ul>
           	{% endblock %}
@@ -59,8 +51,7 @@
 		<div class="container">
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
-				<h1>¿Aún no eres <b>Higuera</b>?</h1>
-				<h2><a class="unete" href="/signup">¡Únete ahora!</a></h2>
+				<h1>Disfruta de AgendaLearning</h1>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
@@ -74,20 +65,20 @@
 			<br><br>
 			<div class="col-lg-4">
 				<i class="fa fa-heart"></i>
-				<h4>ENCUENTRA</h4>
-				<p>¿Cansada de buscar a tu media naranja? ¡Entra en Higr y conoce a tu medio higo más cercano según tu ubicación!</p>
+				<h4>CONSULTA</h4>
+				<p>Consulta las clases que tienes pendientes para hoy.</p>
 			</div><!-- col-lg-4 -->
 
 			<div class="col-lg-4">
 				<i class="fa fa-laptop"></i>
-				<h4>RED SOCIAL</h4>
-				<p>Higr es tu nueva red social de chicas para encontrar el amor. Baja la aplicación para Android o IOS y regístrate, ¡solo te llevará unos minutos!.</p>
+				<h4>RESERVA</h4>
+				<p>Agenda Learning permite reservar nuevas clases para todo tipo de situaciones.</p>
 			</div><!-- col-lg-4 -->
 
 			<div class="col-lg-4">
 				<i class="fa fa-trophy"></i>
-				<h4>SOPORTE</h4>
-				<p>Si tienes alguna duda tienes a tu disposición un equipo dispuesto a ayudarte en lo que necesites. Para más información dirígete en el menú al apartado de contacto.</p>
+				<h4>ORGANÍZATE</h4>
+				<p>Tu agenda como profesor será más cómoda y organizada gracias a nuestro bot de Telegram, así como nuestra página web.</p>
 			</div><!-- col-lg-4 -->
 		</div><!-- row -->
 		<br>
@@ -102,10 +93,6 @@
 				<br>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vulputate est a mauris consectetur congue. Aenean efficitur sapien congue turpis fermentum, eu sodales nulla interdum. Ut diam dolor, bibendum vel ex vel, vehicula porttitor elit. Suspendisse scelerisque tincidunt imperdiet. Mauris interdum facilisis lobortis. Morbi gravida porta dolor. Pellentesque orci nulla, efficitur eu posuere at, ultrices vitae erat. Suspendisse sit amet aliquet nisi, eget sodales eros. Maecenas vel commodo diam, non ultricies metus. Ut commodo nec ante a pretium.</p>
 
-				<a href="#" class="aumentarFont">[ + aumentar ]</a> 
-				<a href="#" class="disminuirFont">[ - disminuir ]</a> 
-				<a href="#" class="resetearFont">[ resetear ]</a>
-				<a href="#" class="cambiarColor"> [Cambiar color ]</a>
 			</div><!-- row -->
 		</div><!-- container -->
 	</div><!-- DG -->
@@ -116,7 +103,7 @@
 			<div class="row centered">
 				<div class="col-lg-8 col-lg-offset-2">
 					<h4>Míriam Mengíbar Rodríguez &copy</h4>
-					<p>Página web diseñada para la asignatura Desarrollo de aplicaciones de Internet. Escuela Técnica Superior de Ingeniería Informática y Telecomunicaciones. Universidad de Granada.</p>
+					<p>Página web diseñada para la asignatura Infraestructuras Virtuales. Escuela Técnica Superior de Ingeniería Informática y Telecomunicaciones. Universidad de Granada.</p>
 				</div>
 			</div><!-- row -->
 		</div><!-- container -->
@@ -150,7 +137,7 @@
 		        		C/ Veracruz nº 10<br/>
 						Granada, España.<br/>
 						+32 693836119<br/>
-						support@higr.com
+						support@agendalearning.com
 		        	</p>
 		        	<div id="mapwrap">
 		<iframe height="300" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.es/maps?t=m&amp;ie=UTF8&amp;ll=52.752693,22.791016&amp;spn=67.34552,156.972656&amp;z=2&amp;output=embed"></iframe>
