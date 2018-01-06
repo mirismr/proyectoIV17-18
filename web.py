@@ -2,6 +2,9 @@ from flask import Flask
 import os
 import json
 from flask import render_template
+import commands
+
+
 
 app = Flask(__name__)
 {
@@ -11,6 +14,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def raiz():
+	commands.getoutput('ls')
 	return render_template('~/proyectoIV17-18/templates/base.html')
 
 @app.route("/status")
