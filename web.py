@@ -3,7 +3,8 @@ import os
 import json
 from flask import render_template
 import funcionalidades_bd as bd
-
+from datetime import date
+import time
 
 app = Flask(__name__)
 {
